@@ -35,18 +35,42 @@ Se desejar abrir a interface interativa do Cypress:
 npx cypress open
 ```
 
+## Executando com Docker
+
+Caso deseje rodar os testes em um ambiente isolado com Docker, utilize o `docker-compose`.
+
+1. Certifique-se de ter o Docker instalado em sua máquina.
+2. No diretório raiz do projeto, execute o seguinte comando:
+   ```sh
+   docker-compose up -d
+   ```
+3. Aguarde as imagens serem baixadas e os containers serem iniciados.
+4. Para rodar os testes dentro do container, utilize:
+   ```sh
+   docker exec -it rockshaver-api-tests npx cypress run
+   ```
+5. Para encerrar os containers:
+   ```sh
+   docker-compose down
+   ```
+
+Isso garantirá que todos os testes rodem em um ambiente configurado corretamente, evitando problemas de dependências.
+
 ## Estrutura do Projeto
 
 ```
 RockshaverAPI/
-│── cypress/
-│   ├── e2e/               # Testes de API
-│   │   ├── users.spec.js   # Testes relacionados a usuários
-│   │   ├── products.spec.js # Testes relacionados a produtos
-│   ├── fixtures/          # Dados simulados para os testes
-│   ├── support/          # Configurações adicionais e comandos customizados
-│── cypress.config.js      # Configuração do Cypress
-│── package.json          # Dependências e scripts do projeto
+├── cypress/
+│   ├── e2e/                 # Testes de API
+│   │   ├── delete.cy.js     # Testes para operações de exclusão
+│   │   ├── get.cy.js        # Testes para operações de recuperação de dados
+│   │   ├── lembrete.cy.js   # Testes relacionados a lembretes
+│   │   ├── post.cy.js       # Testes para operações de criação
+│   ├── fixtures/            # Dados simulados para os testes
+│   ├── support/             # Configurações adicionais e comandos customizados
+├── cypress.config.js        # Configuração do Cypress
+├── package.json             # Dependências e scripts do projeto
+
 ```
 
 ## Contribuição
@@ -65,4 +89,3 @@ Caso tenha dúvidas ou sugestões, entre em contato pelo [GitHub](https://github
 ---
 
 Este README foi criado para documentar os testes automatizados da API Rockshaver. Fique à vontade para sugerir melhorias!
-
